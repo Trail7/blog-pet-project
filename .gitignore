@@ -1,0 +1,6 @@
+.idea
+dist/bundle.js
+dist/index.html
+node_modules
+src/temp.js
+package-lock.json

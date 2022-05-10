@@ -12,6 +12,14 @@ export class Form {
         return value
     }
 
+    clear() {
+        Object.keys(this.controls).forEach(control => {
+            this.form[control].value = ''
+        })
+
+        document.querySelector('#create > div:nth-child(4) > select').selectedIndex = 0
+    }
+
     isValid() {
         let isFormValid = true
 
@@ -23,10 +31,29 @@ export class Form {
                 isValid = validator(this.form[control].value) && isValid
             })
 
+            isValid ? clearError(this.form[control]) : setError(this.form[control])
+
             isFormValid = isFormValid && isValid
         })
 
         return isFormValid
 
     }
+}
+
+function setError($control) {
+    clearError($control)
+    const error = `<p class="validation-error">Please enter the valid data</p>`
+    $control.classList.add('invalid')
+    $control.insertAdjacentHTML('afterend', error)
+}
+
+function clearError($control) {
+    $control.classList.remove('invalid')
+
+    if ($control.nextSibling) {
+        $control.closest('.form-control').removeChild($control.nextSibling)
+    }
+
+
 }

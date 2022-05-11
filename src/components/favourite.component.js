@@ -30,7 +30,7 @@ function renderList(list = []) {
 
         return `
             <ul>
-${list.map(item => `<li><a href="#" class="js-link">${item}</a></li>`).join(' ')}
+${list.map(item => `<li><a href="#" data-id="${item.postId}" class="js-link">${item.title}</a></li>`).join(' ')}
             </ul>
 `
     }
@@ -41,7 +41,7 @@ async function linkClickHandler(event) {
     event.preventDefault()
 
     if (event.target.classList.contains('js-link')) {
-        const postId = event.target.textContent
+        const postId = event.target.dataset.id
         this.$el.innerHTML = ''
 
         this.loader.show()

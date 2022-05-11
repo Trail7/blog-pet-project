@@ -42,6 +42,21 @@ class ApiService{
             console.error(e)
         }
     }
+
+    async clearAllPosts(){
+        try{
+            const request = new Request(this.url + '/posts.json', {
+                method: 'DELETE'
+            })
+            const response = await fetch(request)
+            return await response.json()
+        } catch (e){
+            console.error(e)
+        }
+
+    }
 }
+
+
 
 export const apiService = new ApiService('https://blog-pet-test-default-rtdb.europe-west1.firebasedatabase.app')

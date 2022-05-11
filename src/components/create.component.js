@@ -34,6 +34,6 @@ async function submitHandler(event){
 
         this.form.clear()
 
-        alert("press OK")
+        alert("new note was created!")
     }
 }
